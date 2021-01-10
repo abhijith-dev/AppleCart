@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sign-up| AppleCart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+  body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    background: url("{%static 'client/IMG_6610.jpg'%}");
+    margin-top: 60px;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding:20px;
+    color: rgb(255, 255, 255); 
+  }
+
+  .data {
+    margin: 0 auto;
+    padding-left: 500px;
+  }
+  .validator{
+      border:1px solid rgb(215, 221, 215);
+      border-radius: 2em;
+      padding-left:350px;
+      padding-right:350px;
+      padding-top:5px;
+      padding-bottom:5px;
+      width:68%;
+      margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <center><h1>SIGN-UP</h1></center>
+  <br>
+  <p>Please enter your credentials</p>
+  <br>
+  <div class="validator">
+  <form onsubmit="return validation()" action="{% url 'entry' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="exampleInputname1">Username</label>
+        <input type="text" name="name" class="form-control" id="username" a placeholder="Enter username">
+        <span id="message1" style="color: red"></span>
+    </div> 
+    
+    <div class="form-group"> 
+      <label for="exampleInputEmail1">Email</label>
+      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <span id="message2" style="color: red"></span>
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <span id="message3" style="color: red"></span>
+    </div>
+    
+    <div class="form-group">
+            <label for="exampleInputPassword2">Confirm Password</label>
+            <input type="password" name="password2" class="form-control" id="exampleInputPassword2" placeholder="Password">
+            <span id="message4" style="color: red"></span>
+    </div>
+         
+    <input type="submit" class="btn btn-outline-dark" name="sub-btn" value="Submit">
+    <br>
+   
+  </form>
+  </div>
+  <script>
+    function validation(){
+      var name=document.getElementById('username').value;
+      var email=document.getElementById('exampleInputEmail1').value;
+      var password1=document.getElementById('exampleInputPassword1').value;
+      var password2=document.getElementById('exampleInputPassword2').value;
+      if(name==""){
+        document.getElementById('message1').innerHTML="**please enter name";
+      
+        return false;
+      }
+      if(email==""){
+        document.getElementById('message2').innerHTML="**please enter email";
+        return false;
+      }
+      if(password1==""){
+        document.getElementById('message3').innerHTML="**please enter password";
+        return false;
+      }
+      if(password2==""){
+        document.getElementById('message4').innerHTML="**please confirm password";
+        return false;
+      }
+      if(password1!=password2){
+        document.getElementById('message4').innerHTML="**passwords are not matching...";
+        return false;
+      }
+     
+      /*if(length(password1)<8){
+        document.getElementById('message3').innerHTML="**password is too short";
+        return false;
+      }*/
+    }
+  </script>
+</body>
+</html>

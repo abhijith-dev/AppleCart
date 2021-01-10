@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home | AppleCart</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      background-color: rgb(255, 253, 250);
+      color: black;
+      margin-top: 60px;
+    }
+    
+    .data {
+      margin: 0 auto;
+      padding-left: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  {%load static%}
+    
+  <script src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+    <a class="navbar-brand" href="#"><img src="http://www.clker.com/cliparts/O/N/s/Q/P/Y/shopping-cart-orange-hi.png" width="30" height="30" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" style="color: white" href="#">HOME <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{%url 'about' %}">ABOUT US</a>
+        </li>
+       
+      </ul>
+      <div class="data">
+        <form class="form-inline" action="{%url 'search' %}" method="POST">
+            {%csrf_token%}
+          <input class="form-control mr-sm-4" type="text"  name="search" width="100" placeholder="Search">
+          <button class="btn btn-primary " type="submit">Search</button>
+        </form>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary"><span id="name"></span></button>
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{%url 'login'%}">login</a>
+          <a class="dropdown-item" href="{%url 'logout'%}">logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+<div style="padding-top: 100px">
+<h1>Element not found</h1>
+<img src="{% static 'client/tenor.gif' %}" alt="..">
+</div>
+</body>
+
+</html>

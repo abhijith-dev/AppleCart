@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin | AppleCart</title>
+ 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    body {
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color:black;
+    }
+
+    .buttons{
+        padding-top:90px;
+        padding-left:180px;
+        padding-bottom: 70px;
+    }
+    form{
+      padding-left:140px;
+      padding-right:140px;
+    }
+    .data{
+      margin:0 auto;
+      padding-left:400px;
+    }
+  </style>
+</head>
+
+<body>
+  {%load static%}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <div id="vuee">
+ 
+  <br>
+  <br>
+  <br>
+  <br>
+  <h1>ADMINS HOME</h1>
+  <div class="buttons">
+        <div class="row">
+      <div class="col-sm-2">
+            <button type="submit" class="btn btn-outline-dark" @click="viewAll()">View all Items</button>
+    </div>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <div class="col-sm-2">
+            <button type="submit" class="btn btn-outline-dark" @click="deletControl()">Delete an Item</button>
+    </div>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+<div class="col-sm-2">
+  <button type="submit" class="btn btn-outline-dark" @click="transactionn()">Transaction Details</button>
+</div>
+&nbsp;
+&nbsp;
+&nbsp;
+<div class="col-sm-2">
+  <a href="admin/"><button type="submit" class="btn btn-outline-dark">ADMIN</button></a>
+</div>
+  </div>
+  </div>
+  <div v-show="login">
+  <form  action="{% url 'save_in_db'%}" method="POST">
+    {%csrf_token%}
+    <div class="mb-3">
+      <label for="validationDefault01">Item Name</label>
+      <input type="text" name="name" class="form-control" id="validationDefault01" placeholder="Item Name"  required>
+    </div>
+    <div class="mb-3">
+      <label for="validationDefault01">Item Price</label>
+      <input type="text" name="price" class="form-control" id="validationDefault01" placeholder="Item Price"  required>
+      </div>
+      <label for="validationDefault01">Item Priority</label>
+      <input type="text" name="item_p" class="form-control" id="validationDefault01" placeholder="Item Priority"  required>
+      
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1">Description</label>
+    <textarea class="form-control"name="desc" id="exampleFormControlTextarea1" rows="3" placeholder="Description here..."></textarea>
+          </div>
+          <div class="custom-file">
+            <input type="file" name="image" placeholder=name class="custom-file-input" id="validatedCustomFile" accept="image/*" required>
+            <label class="custom-file-label" for="validatedCustomFile">Add an Image</label>
+          </div>
+          <br><br>
+          <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Add" @click="deletee('Inserted')">
+    </form>
+  </div>
+    <div class="delete" v-show="delet">
+      <h1 style="font-weight: lighter;">Enter the Item name of the Item to be deleted</h1>
+      <br>
+    <div class="data">
+        <form class="form-inline" action="{%url 'delete'%}" method="POST">
+            {% csrf_token %}
+          <input class="form-control mr-sm-2" type="search" name="search" placeholder="Item name" aria-label="Search">
+          
+          <input class="btn btn-outline-dark my-2 my-sm-0" type="submit" value="Delete" >
+    </div>
+    </div>
+
+      <div class="items" v-show="view" >
+        <div class="row">
+          <div class="col-sm-2">
+            <p><b>name</b></p>
+          </div>
+          <div class="col-sm-2">
+            <p><b>price</b></p>
+          </div> 
+          </div>
+          <div class="row" > 
+              <div class="col-sm-2"> 
+              <p>{{items.0.item_name}}</p>
+            </div>
+              <div class="col-sm-2">
+              <p>{{items.0.price}}</p>
+            </div>
+            </div> 
+            {%for i in items|slice:"1:" %}
+            <div class="row"> 
+            <div class="col-sm-2"> 
+            <p>{{i.item_name}}</p>
+          </div>
+            <div class="col-sm-2">
+            <p>{{i.price}}</p>
+          </div>
+          </div>
+            {% endfor %}
+          </div>
+          <div class="items" v-show="transac">
+                <div class="row">
+                    <div class="col-sm-12" >
+                        <div class="card" style="background-color: rgb(173, 177, 196);">
+                          <p><b>item:</b>{{orders.0.item_name}}</p>
+                          <p><b>price:</b>{{orders.0.item_price}}</p>
+                          <p><b>Description:</b>{{orders.0.item_desc}}</p>
+                          <b>user details</b>
+                          <p><b>username:</b>{{orders.0.user_name}}</p>
+                          <p><b>email adress:</b>{{orders.0.user_email}}</p>
+                          <p><b>contact number:</b>{{orders.0.user_number}}</p>
+                          <p><b>area:</b>{{orders.0.area}}</p>
+                          <p><b>LandMark:</b>{{orders.0.Landmark}}</p>
+                          <p><b>pincode:</b>{{orders.0.pincode}}</p>
+                          <p><b>city:</b>{{orders.0.city}}</p>
+                          <p><b>district:</b>{{orders.0.district}}</p>
+                          <p><b>state:</b>{{orders.0.state}}</p>
+                          <p><b>ordered date:</b>{{orders.0.order_date}}</p>
+                          <p><b>ordered time:</b>{{orders.0.order_time}}</p>
+                          <p><b>deadline:</b>{{orders.0.delivery_date}}</p>
+                        </div>
+                      </div>
+                      <br>
+                
+                  {%for i in orders|slice:"1:" %}
+                  <div class="col-sm-12" >
+                  <div class="card" style="background-color: rgb(173, 177, 196);"> 
+                    <p><b>item:</b>{{i.item_name}}</p>
+                    <p><b>price:</b>{{i.item_price}}</p>
+                    <p><b>Description:</b>{{i.item_desc}}</p>
+                    <b>user details</b>
+                    <p><b>username:</b>{{i.user_name}}</p>
+                    <p><b>email adress:</b>{{i.user_email}}</p>
+                    <p><b>contact number:</b>{{i.user_number}}</p>
+                    <p><b>area:</b>{{i.area}}</p>
+                    <p><b>LandMark:</b>{{i.Landmark}}</p>
+                    <p><b>pincode:</b>{{i.pincode}}</p>
+                    <p><b>city:</b>{{i.city}}</p>
+                    <p><b>district:</b>{{i.district}}</p>
+                    <p><b>state:</b>{{i.state}}</p>
+                    <p><b>ordered date:</b>{{i.order_date}}</p>
+                    <p><b>ordered time:</b>{{i.order_time}}</p>
+                    <p><b>deadline:</b>{{i.delivery_date}}</p>
+                  </div>
+                </div>
+                    {% endfor %}
+                  </div>
+          </div>  
+
+  <script src="{%static  'client/vuee.js' %}"></script>
+
+</body>
+
+</html>

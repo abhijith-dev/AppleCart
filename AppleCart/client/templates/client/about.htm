@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>About Us | AppleCart</title>
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home | AppleCart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: white;
+     
+      margin-top: 60px;
+  background-image: url("{%static 'client/IMG_6610.jpg'%}");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+#para{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding:50px;
+  padding-top: 5px;
+  margin: 0 auto;
+  text-align:center;
+}
+.row{
+  color:white;
+  padding-left:250px;
+  text-align: left;
+}
+
+  </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  {%load static%}
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+      <a class="navbar-brand" href="#"><img src="http://www.clker.com/cliparts/O/N/s/Q/P/Y/shopping-cart-orange-hi.png" width="30" height="30" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" style="color: white" href="{%url 'shop' %}">HOME <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: white" href="{%url 'about' %}">ABOUT US</a>
+          </li>
+         
+        </ul>
+        <div class="data">
+          <form class="form-inline" action="{%url 'search' %}" method="POST">
+              {%csrf_token%}
+            <input class="form-control mr-sm-4" type="text"  name="search" width="100" placeholder="Search">
+            <button class="btn btn-primary " type="submit">Search</button>
+          </form>
+      </div>
+      </div>
+    </nav> 
+  <img src="https://www.applecartng.com/image/cache/catalog/demo/images/Applecart%20logo%20without%20background%20from%20David-1104x631.jpg">
+  <h1>ABOUT US</h1>
+  <br><br>
+  <div id="para">
+  <p>Developed as the part of <b>Web Technologies Mini Project</b>, "AppleCart" transforms the way in which shopping is done. Using "AppleCart", one can buy all the grocery items that he needs via online, making the shopping secure, convenient and efficient in terms of Pricing. This project is implemented using <b>django</b> for back end and <b>HTML, CSS and BootStrap</b> for front end. Using <b>AppleCart</b> one need not go to shops to buy grocery items as the items are delivered to your doorsteps. Hence <b>AppleCart</b> is India's very own <b>Online Grocery Store</b></p>
+  </div>
+  <br>
+  <h1>WHO WE ARE</h1>
+  <p>Meet the duo behind "AppleCart"</p>
+  <br><br>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card" style="width:15rem;">
+        <img class="card-img-top" src="{%static 'client/Prashilbvc.jpeg'%}" alt="Card image" style="height: 15em; width:15em">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Prashil Alva</h5>
+          <p class="card-text">4th Year ISE</p>
+          <a href="https://www.linkedin.com/in/prashilalva27/" class="btn btn-primary">Linkedin</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width:15rem;">
+        <img class="card-img-top" src="{%static 'client/Abhijithbvc.jpeg'%}" alt="Card image" style="height: 15em; width:15em">
+        <div class="card-img-overlay">
+          <h5 class="card-title">Abhijith</h5>
+          <p class="card-text">4th Year ISE</p>
+          <a href="https://www.linkedin.com/in/abhijith-shetty-207556186/" class="btn btn-primary">Linkedin</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  
+</body>
+
+</html>

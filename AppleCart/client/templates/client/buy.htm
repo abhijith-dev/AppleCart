@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AppleCart| Buy Item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      body{
+       background: url("{%static 'client/images.jpg'%}") no-repeat;
+       background-position: center;
+       background-size: cover;
+       background-attachment: fixed;
+      align-content: center;
+      }
+      input{
+        background-color: grey;
+      }
+      .borderr{
+        padding-left:100px;
+        border:0.5px solid rgb(215, 221, 215);
+        border-radius: 2em;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        
+      }
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+      <a class="navbar-brand" href="#"><img src="http://www.clker.com/cliparts/O/N/s/Q/P/Y/shopping-cart-orange-hi.png" width="30" height="30" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" style="color: white" href="{%url 'shop' %}">HOME <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: white" href="{%url 'about' %}">ABOUT US</a>
+          </li>
+         
+        </ul>
+        <div class="data">
+          <form class="form-inline" action="{%url 'search' %}" method="POST">
+              {%csrf_token%}
+            <input class="form-control mr-sm-4" type="text"  name="search" width="100" placeholder="Search">
+            <button class="btn btn-primary " type="submit">Search</button>
+          </form>
+      </div>
+      </div>
+    </nav>
+    <br>
+    <br>
+    <br> 
+        <h1 style="text-align: center">PLEASE FILL YOUR DETAILS</h1>
+        <br>
+        <div class="borderr">
+        <div class="row">
+        <div class="col-sm-3">
+        <div class="card-group" >
+                <div class="card" style="width: 18rem;background-color: grey;">
+                  <img
+                    src={{image}}
+                    class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">Rs {{price}}</p>
+                    <p class="card-text">{{desc}}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-sm-3">
+            <form action="{%url 'order'%}" method="POST" >
+            {%csrf_token%}
+            <b>CONTACT NUMBER:</b><input class="form-control" name="phno" type="text" value="+91" style="background-color: grey;">
+            <br>
+            <b>AREA:</b><textarea class="form-control" name="area" type="text" width="100" style="background-color: grey;"></textarea>
+            <br>
+            <b>CITY:</b><input class="form-control" name="city" type="text" width="100" style="background-color: grey;">
+            <br>
+            <b>LANDMARK:</b><textarea class="form-control" name="landmark" type="text" width="100" style="background-color: grey;"></textarea>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+            <b>PIN CODE:</b><input class="form-control" name="pincode" type="text" width="100" style="background-color: grey;">
+            <br>
+            <b>DISTRICT:</b><input class="form-control" name="district" type="text" width="100" style="background-color: grey;">
+            <br>
+            <b>STATE:</b><input class="form-control" name="state" type="text" width="100" style="background-color: grey;" >
+            <br>
+            <b>DATE:</b><input value="{{date}}" name="userdate" class="form-control" type="text" width="100" style="background-color: grey; ">
+            <br>
+            <input type="hidden" name="time" value="{{time}}">
+            <input type="hidden" name="date" value="{{date}}">
+            <input type="hidden" name="email" id="xemail">
+            <input type="hidden" name="name" id="xname">
+            <input type="hidden" name="item_name" value="{{name}}">
+            <input type="hidden" name="price" value="{{price}}">
+            <input type="hidden" name="desc" value="{{desc}}">
+            <input type="submit" class="btn btn-primary" value="PLACE ORDER">
+        </div>    
+    </form>
+        </div>
+        </div>
+    <script>
+        var name=localStorage.getItem("name");
+        var email=localStorage.getItem("email");
+        document.getElementById('xname').value=name;
+        document.getElementById('xemail').value=email;
+      </script>
+</body>
+</html>
