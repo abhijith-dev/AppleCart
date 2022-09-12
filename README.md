@@ -1,2 +1,2 @@
 # AppleCart
-(![APM](https://img.shields.io/apm/dm/download)(https://skinmate.herokuapp.com)
+![APM](https://img.shields.io/apm/dm/vim-mode)
