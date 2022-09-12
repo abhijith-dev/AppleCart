@@ -1,3 +1,2 @@
 # AppleCart
-
-[!freelance(https://img.shields.io/amo/v/live?style=social)](https://www.google.com)
+[![For Sale](https://shields.io/badge/heroku-live-purple?logo=Heroku)](https://skinmate.herokuapp.com)
